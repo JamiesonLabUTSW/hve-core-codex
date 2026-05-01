@@ -67,6 +67,25 @@ back to loading the packaged markdown files directly. Upstream agent markdown is
 not assumed to create new Codex `spawn_agent` role names; wrappers use built-in
 Codex subagent roles only when the current runtime exposes them.
 
+Preferred Codex prompts should read like normal instructions:
+
+```text
+Use HVE RPI to validate and plan remediation for an access-control issue. Do not modify files yet.
+Use HVE security review to review group ownership checks around transcription jobs.
+```
+
+The command-style shorthand is accepted for compatibility, but it is not the
+preferred Codex interaction model:
+
+```text
+$hve-core-codex rpi task="Validate and plan remediation for an access-control issue. Do not modify files yet."
+$hve-core-codex security-review task="Review group ownership checks around transcription jobs."
+```
+
+Wrapper route maps use plugin-root-relative assets such as
+`commands/hve-core/rpi.md` and `agents/hve-core/rpi-agent.md`. This avoids
+repo-layout paths when the plugin is installed in the Codex plugin cache.
+
 If a newly added wrapper skill does not appear in `codex exec` or
 `codex debug prompt-input`, refresh the local plugin installation from the Codex
 UI or reinstall the local marketplace so the plugin cache is rebuilt. As a

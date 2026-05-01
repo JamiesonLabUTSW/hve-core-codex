@@ -43,3 +43,4 @@ For every new agent:
 - `hve-port-maintainer`: sync, verification, surface audit, and wrapper reconciliation.
 
 Prefer updating route references over duplicating upstream instructions in wrapper skill bodies.
+Use plugin-root-relative paths in route files, such as `commands/hve-core/rpi.md` and `agents/hve-core/rpi-agent.md`. Do not use repository layout paths such as `plugins/hve-core-codex/commands/hve-core/rpi.md`.

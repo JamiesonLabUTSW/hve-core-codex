@@ -119,6 +119,13 @@ for skill_name in "${required_wrapper_skills[@]}"; do
   [[ -f "${plugin_root}/skills/${skill_name}/SKILL.md" ]] || fail "Missing Codex wrapper skill: ${skill_name}"
 done
 
+for skill_name in "${required_wrapper_skills[@]}"; do
+  route_file="${plugin_root}/skills/${skill_name}/references/routes.md"
+  if [[ -f "${route_file}" ]] && grep -q "plugins/hve-core-codex/" "${route_file}"; then
+    fail "Wrapper route files must use plugin-root-relative paths, not repository layout paths: ${route_file}"
+  fi
+done
+
 if find "${plugin_root}/skills" -path "*owasp-docker*" -print -quit | grep -q .; then
   fail "owasp-docker must not be included in the plugin payload"
 fi

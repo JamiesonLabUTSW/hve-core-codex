@@ -106,6 +106,12 @@ in a `references/` route file. Update route references when upstream adds a
 user-facing command or agent that should be discoverable through skills. Do not
 duplicate upstream command or agent instructions in wrapper skill bodies.
 
+Route maps must use plugin-root-relative paths such as
+`commands/hve-core/rpi.md`, not repository layout paths such as
+`plugins/hve-core-codex/commands/hve-core/rpi.md`. Wrapper `SKILL.md` files must
+tell Codex to resolve those paths from the installed plugin root by moving two
+directories up from the wrapper skill directory.
+
 ## Exclusions
 
 `owasp-docker` is excluded because upstream marks it as removed due
