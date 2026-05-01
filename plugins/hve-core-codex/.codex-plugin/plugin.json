@@ -1,7 +1,7 @@
 {
   "name": "hve-core-codex",
-  "version": "3.3.101",
-  "description": "HVE Core All agents, commands, instructions, skills, and workflow guidance packaged for Codex CLI.",
+  "version": "3.3.101-codex.1",
+  "description": "HVE Core All agents, commands, instructions, skills, wrapper routers, and workflow guidance packaged for Codex CLI.",
   "author": {
     "name": "Microsoft",
     "url": "https://github.com/microsoft"
@@ -26,7 +26,7 @@
   "interface": {
     "displayName": "HVE Core",
     "shortDescription": "HVE Core All for Codex CLI.",
-    "longDescription": "Codex CLI plugin packaging the HVE Core All bundle: RPI workflow agents, reusable commands, coding and domain instructions, templates, security knowledge bases, and optional GitHub Actions automation guidance.",
+    "longDescription": "Codex CLI plugin packaging the HVE Core All bundle: runtime-first command and agent markdown surfaces, wrapper skills for reliable discovery, coding and domain instructions, templates, security knowledge bases, and optional GitHub Actions automation guidance.",
     "developerName": "Microsoft",
     "category": "Productivity",
     "capabilities": [

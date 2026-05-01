@@ -54,8 +54,57 @@ Hand-maintained:
 
 Codex-specific additions live in `overlays/hve-core-codex/`. The sync script
 copies overlays into the plugin after upstream files are copied. This keeps local
-helper commands separate from upstream content and avoids editing generated files
-directly.
+helper commands, wrapper skills, and route maps separate from upstream content
+and avoids editing generated files directly.
+
+## Runtime Surface Policy
+
+This port is runtime-first for upstream commands and agents:
+
+* `plugins/hve-core-codex/commands/` is preserved as the plugin slash-command
+  surface where Codex supports plugin commands.
+* `plugins/hve-core-codex/agents/` is preserved as the plugin agent-definition
+  surface where Codex supports plugin agents.
+* Wrapper skills remain the reliable discovery and fallback layer because Codex
+  skill discovery is the surface this port can verify consistently.
+
+This repository verifies that wrapper skills are present in the plugin payload.
+Runtime testing should also confirm local marketplace cache state: after the
+plugin is installed through the Codex UI, `codex exec` and
+`codex debug prompt-input` should expose plugin skills with names such as
+`hve-core-codex:hve-core-workflows`. If a new wrapper is missing, refresh the
+local plugin installation or use direct file references to the wrapper
+`SKILL.md` files until the cache is rebuilt.
+
+Upstream agent files are not treated as dynamic Codex `spawn_agent` roles. If a
+workflow benefits from Codex subagents, use only the built-in roles exposed by
+the current runtime and pass the relevant HVE agent guidance as prompt context.
+
+`scripts/audit-runtime-surfaces.js` verifies command metadata, agent metadata,
+and command-to-agent references as part of `scripts/verify-port.sh`.
+
+## Version Policy
+
+`upstream.lock.json` records the exact upstream HVE Core version and commit. The
+Codex plugin manifest may either match the upstream version or add a downstream
+suffix in the form `<upstream-version>-codex.N`. Use the suffix when this port
+adds wrapper skills, metadata, or compatibility changes without a new upstream
+release, because Codex caches installed local plugins by version.
+
+## Wrapper Skill Policy
+
+Curated wrapper skills live under `overlays/hve-core-codex/skills/`:
+
+* `hve-core-workflows`
+* `hve-security-workflows`
+* `hve-pr-workflows`
+* `hve-github-automation`
+* `hve-port-maintainer`
+
+Each wrapper keeps its `SKILL.md` body short and stores workflow-to-file mapping
+in a `references/` route file. Update route references when upstream adds a
+user-facing command or agent that should be discoverable through skills. Do not
+duplicate upstream command or agent instructions in wrapper skill bodies.
 
 ## Exclusions
 
@@ -84,4 +133,9 @@ repository.
 2. Run `./scripts/sync-upstream.sh ../hve-core`.
 3. Run `./scripts/verify-port.sh`.
 4. Review the generated diff.
-5. Commit the sync with the updated `upstream.lock.json`.
+5. Review new or removed files under `plugins/hve-core-codex/commands/` and
+   `plugins/hve-core-codex/agents/`.
+6. Update wrapper route maps only for intentionally user-facing workflows.
+7. Update the plugin manifest version if the upstream version changed or if a
+   Codex-only change needs a new downstream suffix.
+8. Commit the sync with the updated `upstream.lock.json`.

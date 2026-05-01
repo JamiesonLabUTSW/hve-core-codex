@@ -6,7 +6,7 @@
     "version": "3.3.101",
     "bundle": "plugins/hve-core-all"
   },
-  "syncedAt": "2026-05-01T15:01:53Z",
+  "syncedAt": "2026-05-01T15:19:07Z",
   "artifactCounts": {
     "upstream": {
       "agents": 54,
@@ -18,7 +18,7 @@
       "agents": 54,
       "commands": 71,
       "instructions": 104,
-      "skills": 17,
+      "skills": 22,
       "docsTemplateFiles": 12,
       "automationWorkflowFiles": 10,
       "automationAgentFiles": 58,
