@@ -1,0 +1,20 @@
+{
+  "name": "hve-core-codex-local",
+  "interface": {
+    "displayName": "HVE Core Codex Local"
+  },
+  "plugins": [
+    {
+      "name": "hve-core-codex",
+      "source": {
+        "source": "local",
+        "path": "./plugins/hve-core-codex"
+      },
+      "policy": {
+        "installation": "INSTALLED_BY_DEFAULT",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

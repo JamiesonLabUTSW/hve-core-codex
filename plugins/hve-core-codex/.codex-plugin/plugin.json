@@ -1,0 +1,39 @@
+{
+  "name": "hve-core-codex",
+  "version": "3.3.101",
+  "description": "HVE Core skills packaged as a Codex CLI plugin.",
+  "author": {
+    "name": "Microsoft",
+    "url": "https://github.com/microsoft"
+  },
+  "homepage": "https://microsoft.github.io/hve-core/",
+  "repository": "https://github.com/microsoft/hve-core",
+  "license": "MIT AND CC-BY-SA-4.0 AND CC-BY-4.0 AND OGL-UK-3.0",
+  "keywords": [
+    "hve-core",
+    "codex",
+    "skills",
+    "github-copilot",
+    "security",
+    "jira",
+    "gitlab"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "HVE Core",
+    "shortDescription": "HVE Core skills for Codex CLI.",
+    "longDescription": "Codex CLI plugin packaging HVE Core reusable skills, including PR reference generation, issue tracker utilities, PowerPoint workflows, and security knowledge bases.",
+    "developerName": "Microsoft",
+    "category": "Productivity",
+    "capabilities": [
+      "Skills"
+    ],
+    "websiteURL": "https://microsoft.github.io/hve-core/",
+    "defaultPrompt": [
+      "Generate a PR reference for this branch.",
+      "Help me inspect Jira or GitLab work.",
+      "Use HVE security skills on this codebase."
+    ],
+    "brandColor": "#0078D4"
+  }
+}
