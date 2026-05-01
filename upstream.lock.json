@@ -1,0 +1,52 @@
+{
+  "source": {
+    "repository": "https://github.com/microsoft/hve-core",
+    "localPath": "/Users/michael/sideprojects/hve-core",
+    "commit": "af1f9ca335e623d7a5fd8f474a7f9b3beb179764",
+    "version": "3.3.101",
+    "bundle": "plugins/hve-core-all"
+  },
+  "syncedAt": "2026-05-01T15:01:53Z",
+  "artifactCounts": {
+    "upstream": {
+      "agents": 54,
+      "commands": 68,
+      "instructions": 104,
+      "skills": 17
+    },
+    "final": {
+      "agents": 54,
+      "commands": 71,
+      "instructions": 104,
+      "skills": 17,
+      "docsTemplateFiles": 12,
+      "automationWorkflowFiles": 10,
+      "automationAgentFiles": 58,
+      "automationInstructionFiles": 107,
+      "automationSkillFiles": 17
+    }
+  },
+  "generatedDirectories": [
+    "plugins/hve-core-codex/agents",
+    "plugins/hve-core-codex/commands",
+    "plugins/hve-core-codex/instructions",
+    "plugins/hve-core-codex/skills",
+    "plugins/hve-core-codex/docs/templates",
+    "plugins/hve-core-codex/scripts/lib",
+    "github-actions/workflows",
+    "github-actions/artifacts/.github"
+  ],
+  "overlays": [
+    "overlays/hve-core-codex"
+  ],
+  "excludedArtifacts": [
+    {
+      "name": "owasp-docker",
+      "reason": "Upstream marks this skill as removed due distribution-incompatible source licensing."
+    },
+    {
+      "name": "co-located tests and caches",
+      "reason": "Runtime plugin payload excludes test fixtures and local cache directories."
+    }
+  ]
+}

@@ -1,52 +1,77 @@
 # HVE Core Codex Plugin
 
-This repository packages HVE Core skills as a Codex CLI compatible plugin.
+This repository packages the upstream HVE Core All bundle as a Codex CLI compatible plugin.
 
-The local marketplace manifest lives at `.agents/plugins/marketplace.json`.
-The plugin payload lives at `plugins/hve-core-codex/`, with its manifest at
-`plugins/hve-core-codex/.codex-plugin/plugin.json` and skills under
-`plugins/hve-core-codex/skills/`.
+HVE Core upstream: <https://github.com/microsoft/hve-core>
 
-The plugin package name is `hve-core-codex` so it is distinct from the upstream
-HVE Core VS Code extension and source repository.
+## What Is Included
 
-## Included Skills
+The Codex plugin lives at `plugins/hve-core-codex/` and is synced from upstream
+`plugins/hve-core-all` where possible.
 
-This plugin currently mirrors the HVE Core skill packages that are distributed
-through the HVE Core collections, excluding `owasp-docker` because HVE Core marks
-that skill as removed from distribution.
+Generated from upstream:
 
-| Skill | Purpose |
+| Path | Purpose |
 |---|---|
-| `customer-card-render` | Generate customer-card PowerPoint content YAML from Design Thinking artifacts. |
-| `gitlab` | Manage GitLab merge requests and pipelines with a Python CLI. |
-| `hve-core-installer` | Guide HVE Core installation, environment detection, validation, and customization workflows. |
-| `jira` | Search, inspect, create, update, transition, and comment on Jira issues. |
-| `owasp-agentic` | OWASP Agentic Security Top 10 knowledge base. |
-| `owasp-cicd` | OWASP CI/CD Top 10 knowledge base. |
-| `owasp-infrastructure` | OWASP Infrastructure Top 10 knowledge base. |
-| `owasp-llm` | OWASP Top 10 for LLM Applications knowledge base. |
-| `owasp-mcp` | OWASP MCP Top 10 knowledge base. |
-| `owasp-top-10` | OWASP Top 10 for Web Applications knowledge base. |
-| `powerpoint` | Generate and manage PowerPoint decks with `python-pptx`. |
-| `pr-reference` | Generate branch diff and commit reference XML for PRs and reviews. |
-| `python-foundational` | Foundational Python coding standards and quality guidance. |
-| `secure-by-design` | Secure by Design principles knowledge base. |
-| `security-reviewer-formats` | Data contracts and report formats for HVE security review agents. |
-| `video-to-gif` | Convert videos to optimized GIFs with FFmpeg. |
-| `vscode-playwright` | Capture VS Code screenshots using Playwright MCP and `serve-web`. |
+| `plugins/hve-core-codex/agents/` | HVE Core agent definitions, including RPI, planning, review, security, backlog, and design-thinking agents. |
+| `plugins/hve-core-codex/commands/` | Prompt-derived Codex slash commands plus local HVE Codex helper commands. |
+| `plugins/hve-core-codex/instructions/` | HVE Core coding, workflow, security, RAI, and domain instruction references. |
+| `plugins/hve-core-codex/skills/` | Codex skill packages, flattened for Codex discovery. |
+| `plugins/hve-core-codex/docs/templates/` | Reusable planning, review, ADR, BRD, security, SSSC, and RAI templates. |
+| `plugins/hve-core-codex/scripts/lib/` | Small upstream shared helper scripts bundled with generated plugins. |
+| `github-actions/workflows/` | Optional GitHub Agentic Workflow automation package for consumer repos. |
+| `github-actions/artifacts/.github/` | Source agents, instructions, and skills expected by the optional workflow package. |
 
-## Sync From HVE Core
+Hand-maintained in this port:
 
-Run this from the plugin repo root when the adjacent HVE Core checkout changes:
+| Path | Purpose |
+|---|---|
+| `.agents/plugins/marketplace.json` | Local marketplace entry for Codex. |
+| `plugins/hve-core-codex/.codex-plugin/plugin.json` | Codex plugin manifest. |
+| `scripts/sync-upstream.sh` | Deterministic sync from upstream HVE Core. |
+| `scripts/verify-port.sh` | Port verification checks. |
+| `overlays/hve-core-codex/` | Codex-specific helper commands copied after upstream sync. |
+| `PORTING.md` | Porting rules, exclusions, and known limitations. |
+
+## Install Locally
+
+From this repository:
 
 ```bash
-./scripts/sync-skills.sh ../hve-core
+codex plugin marketplace add /Users/michael/sideprojects/hve-core-codex
 ```
 
-The sync copies skill directories into
-`plugins/hve-core-codex/skills/<skill-name>/`, excludes co-located test
-directories, and copies `LICENSE` plus `THIRD-PARTY-NOTICES` when available.
+If the marketplace is already registered, refresh it after changes:
+
+```bash
+codex plugin marketplace upgrade hve-core-codex-local
+```
+
+## Sync From Upstream
+
+Run this from the repo root when the adjacent upstream HVE Core checkout changes:
+
+```bash
+./scripts/sync-upstream.sh ../hve-core
+./scripts/verify-port.sh
+```
+
+The sync writes `upstream.lock.json` with the upstream commit, version, generated
+counts, and known exclusions. Treat generated directories as vendored output:
+refresh them with the sync script instead of editing them by hand.
+
+## Optional GitHub Automation
+
+The Codex plugin provides interactive agents, commands, instructions, templates,
+and skills. GitHub event automation is packaged separately under
+`github-actions/workflows/` so consumer repositories can opt in explicitly.
+
+See `github-actions/README.md` before installing these workflows into another
+repository. They can perform write actions such as labeling issues, commenting,
+submitting PR reviews, creating issues, and creating pull requests when the
+required GitHub Agentic Workflow secrets and permissions are configured. The
+package also includes `github-actions/artifacts/.github/` because the workflows
+import HVE Core agents and instructions at runtime.
 
 ## Licensing
 

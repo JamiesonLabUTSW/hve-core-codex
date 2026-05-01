@@ -1,7 +1,7 @@
 {
   "name": "hve-core-codex",
   "version": "3.3.101",
-  "description": "HVE Core skills packaged as a Codex CLI plugin.",
+  "description": "HVE Core All agents, commands, instructions, skills, and workflow guidance packaged for Codex CLI.",
   "author": {
     "name": "Microsoft",
     "url": "https://github.com/microsoft"
@@ -12,8 +12,12 @@
   "keywords": [
     "hve-core",
     "codex",
+    "agents",
+    "commands",
     "skills",
+    "rpi",
     "github-copilot",
+    "github-actions",
     "security",
     "jira",
     "gitlab"
@@ -21,18 +25,20 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "HVE Core",
-    "shortDescription": "HVE Core skills for Codex CLI.",
-    "longDescription": "Codex CLI plugin packaging HVE Core reusable skills, including PR reference generation, issue tracker utilities, PowerPoint workflows, and security knowledge bases.",
+    "shortDescription": "HVE Core All for Codex CLI.",
+    "longDescription": "Codex CLI plugin packaging the HVE Core All bundle: RPI workflow agents, reusable commands, coding and domain instructions, templates, security knowledge bases, and optional GitHub Actions automation guidance.",
     "developerName": "Microsoft",
     "category": "Productivity",
     "capabilities": [
-      "Skills"
+      "Interactive",
+      "Read",
+      "Write"
     ],
     "websiteURL": "https://microsoft.github.io/hve-core/",
     "defaultPrompt": [
-      "Generate a PR reference for this branch.",
-      "Help me inspect Jira or GitLab work.",
-      "Use HVE security skills on this codebase."
+      "Run the HVE RPI workflow for this task.",
+      "Review this repo with HVE security guidance.",
+      "Explain the HVE GitHub automation package."
     ],
     "brandColor": "#0078D4"
   }
