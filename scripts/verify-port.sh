@@ -119,6 +119,7 @@ required_wrapper_skills=(
   "hve-port-maintainer"
   "hve-copilot-instructions"
   "hve-codex-agent-porting"
+  "hve-design-thinking-workflows"
 )
 
 for skill_name in "${required_wrapper_skills[@]}"; do

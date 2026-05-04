@@ -3,7 +3,7 @@
   "generatedBy": "scripts/generate-codex-agents.js",
   "plugin": {
     "name": "hve-core-codex",
-    "version": "3.3.101-codex.4"
+    "version": "3.3.101-codex.5"
   },
   "upstream": {
     "repository": "https://github.com/microsoft/hve-core",

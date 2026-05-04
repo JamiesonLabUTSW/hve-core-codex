@@ -1,6 +1,6 @@
 {
   "name": "hve-core-codex",
-  "version": "3.3.101-codex.4",
+  "version": "3.3.101-codex.5",
   "description": "HVE Core All agents, commands, instructions, skills, wrapper routers, and workflow guidance packaged for Codex CLI.",
   "author": {
     "name": "Microsoft",

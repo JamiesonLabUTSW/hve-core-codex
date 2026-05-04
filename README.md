@@ -66,11 +66,18 @@ The reliable Codex-discoverable entrypoints are wrapper skills:
 * `hve-port-maintainer`
 * `hve-copilot-instructions`
 * `hve-codex-agent-porting`
+* `hve-design-thinking-workflows`
 
 The wrappers prefer runtime command/agent behavior when available, then fall
 back to loading the packaged markdown files directly. Upstream agent markdown is
 not assumed to create new Codex `spawn_agent` role names; wrappers use built-in
 Codex subagent roles only when the current runtime exposes them.
+
+Some upstream prompt files use `agent: agent`, which is VS Code GitHub Copilot
+metadata for built-in agent mode rather than a concrete HVE agent name. The
+Codex port treats those files as covered when a wrapper route points at the
+command asset. Unrouted generic agent-mode prompt files continue to appear as
+verification warnings.
 
 Preferred Codex prompts should read like normal instructions:
 

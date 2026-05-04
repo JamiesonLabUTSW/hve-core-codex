@@ -114,11 +114,19 @@ Curated wrapper skills live under `overlays/hve-core-codex/skills/`:
 * `hve-port-maintainer`
 * `hve-copilot-instructions`
 * `hve-codex-agent-porting`
+* `hve-design-thinking-workflows`
 
 Each wrapper keeps its `SKILL.md` body short and stores workflow-to-file mapping
 in a `references/` route file. Update route references when upstream adds a
 user-facing command or agent that should be discoverable through skills. Do not
 duplicate upstream command or agent instructions in wrapper skill bodies.
+
+VS Code GitHub Copilot prompt files may use `agent: agent` to select built-in
+agent mode. That value is not a concrete HVE agent name in Codex. Keep upstream
+prompt files unchanged and cover user-facing generic-agent commands through
+wrapper route maps. The runtime audit suppresses the generic-agent warning only
+when the command is routed by a Codex wrapper; unrouted generic-agent commands
+still warn during verification.
 
 Route maps must use plugin-root-relative paths such as
 `commands/hve-core/rpi.md`, not repository layout paths such as

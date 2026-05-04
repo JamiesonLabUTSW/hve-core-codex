@@ -7,6 +7,7 @@ const repoRoot = path.resolve(__dirname, "..");
 const pluginRoot = path.resolve(process.argv[2] || path.join(repoRoot, "plugins/hve-core-codex"));
 const commandsRoot = path.join(pluginRoot, "commands");
 const agentsRoot = path.join(pluginRoot, "agents");
+const skillsRoot = path.join(pluginRoot, "skills");
 
 function fail(message) {
   console.error(`runtime-surface-audit: ${message}`);
@@ -24,6 +25,23 @@ function walkMarkdown(root) {
     if (entry.isDirectory()) {
       files.push(...walkMarkdown(fullPath));
     } else if (entry.isFile() && entry.name.endsWith(".md")) {
+      files.push(fullPath);
+    }
+  }
+  return files.sort();
+}
+
+function walkRouteFiles(root) {
+  if (!fs.existsSync(root)) {
+    return [];
+  }
+
+  const files = [];
+  for (const entry of fs.readdirSync(root, { withFileTypes: true })) {
+    const fullPath = path.join(root, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...walkRouteFiles(fullPath));
+    } else if (entry.isFile() && entry.name === "routes.md" && path.basename(path.dirname(fullPath)) === "references") {
       files.push(fullPath);
     }
   }
@@ -69,8 +87,37 @@ function normalizeAgentKey(value) {
   return stripQuotes(value).toLowerCase().replace(/[^a-z0-9]/g, "");
 }
 
+function routeCommandAssets(routeFiles) {
+  const covered = new Map();
+  const missing = [];
+
+  for (const routeFile of routeFiles) {
+    const text = fs.readFileSync(routeFile, "utf8");
+    const relRoute = path.relative(repoRoot, routeFile);
+    const matches = text.matchAll(/`(commands\/[^`]+?\.md)`/g);
+
+    for (const match of matches) {
+      const asset = match[1];
+      const fullPath = path.join(pluginRoot, asset);
+
+      if (!fs.existsSync(fullPath)) {
+        missing.push(`${relRoute}: route references missing command asset ${asset}`);
+        continue;
+      }
+
+      if (!covered.has(fullPath)) {
+        covered.set(fullPath, []);
+      }
+      covered.get(fullPath).push(relRoute);
+    }
+  }
+
+  return { covered, missing };
+}
+
 const commandFiles = walkMarkdown(commandsRoot);
 const agentFiles = walkMarkdown(agentsRoot);
+const routeFiles = walkRouteFiles(skillsRoot);
 
 if (commandFiles.length === 0) {
   fail(`missing command markdown files under ${path.relative(repoRoot, commandsRoot)}`);
@@ -83,6 +130,9 @@ if (agentFiles.length === 0) {
 const errors = [];
 const warnings = [];
 const agentKeys = new Map();
+const coveredCommandRoutes = routeCommandAssets(routeFiles);
+
+errors.push(...coveredCommandRoutes.missing);
 
 for (const filePath of agentFiles) {
   const parsed = parseMarkdown(filePath);
@@ -127,7 +177,9 @@ for (const filePath of commandFiles) {
   if (agent) {
     const normalized = normalizeAgentKey(agent);
     if (normalized === "agent") {
-      warnings.push(`${parsed.relPath}: uses generic agent placeholder`);
+      if (!coveredCommandRoutes.covered.has(filePath)) {
+        warnings.push(`${parsed.relPath}: uses generic agent placeholder without Codex wrapper route coverage`);
+      }
     } else if (!agentKeys.has(normalized)) {
       errors.push(`${parsed.relPath}: agent reference "${stripQuotes(agent)}" does not resolve to a packaged agent`);
     }
