@@ -37,12 +37,12 @@ Hand-maintained in this port:
 | `overlays/hve-core-codex/` | Codex-specific helper commands and wrapper skills copied after upstream sync. |
 | `PORTING.md` | Porting rules, exclusions, and known limitations. |
 
-## Install Locally
+## Install
 
-From this repository:
+Register the public marketplace source:
 
 ```bash
-codex plugin marketplace add /Users/michael/sideprojects/hve-core-codex
+codex plugin marketplace add https://github.com/JamiesonLabUTSW/hve-core-codex
 ```
 
 If the marketplace is already registered, refresh it after changes:
@@ -50,6 +50,9 @@ If the marketplace is already registered, refresh it after changes:
 ```bash
 codex plugin marketplace upgrade hve-core-codex-local
 ```
+
+For unpublished local changes, pass the path to your local checkout as the
+marketplace source instead of the public GitHub URL.
 
 ## Runtime Surfaces
 
