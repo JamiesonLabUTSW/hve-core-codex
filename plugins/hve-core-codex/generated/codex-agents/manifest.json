@@ -7,7 +7,7 @@
   },
   "upstream": {
     "repository": "https://github.com/microsoft/hve-core",
-    "commit": "af1f9ca335e623d7a5fd8f474a7f9b3beb179764",
+    "commit": "57ea279d17424d8fabc4bafe13d793432242e31c",
     "version": "3.3.101",
     "bundle": "plugins/hve-core-all"
   },

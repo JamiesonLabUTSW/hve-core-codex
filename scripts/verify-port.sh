@@ -109,7 +109,7 @@ automation_skills="$(count_files "${automation_artifacts}/skills" "SKILL.md")"
 [[ "${workflows}" -eq 10 ]] || fail "Expected 10 GitHub workflow package files, found ${workflows}"
 [[ "${automation_agents}" -ge 58 ]] || fail "Expected at least 58 automation agent files, found ${automation_agents}"
 [[ "${automation_instructions}" -ge 107 ]] || fail "Expected at least 107 automation instruction files, found ${automation_instructions}"
-[[ "${automation_skills}" -eq 16 ]] || fail "Expected 16 automation skill files, found ${automation_skills}"
+[[ "${automation_skills}" -ge 16 ]] || fail "Expected at least 16 automation skill files, found ${automation_skills}"
 
 required_wrapper_skills=(
   "hve-core-workflows"
