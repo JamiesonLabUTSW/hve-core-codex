@@ -1,0 +1,1065 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "scripts/generate-codex-agents.js",
+  "plugin": {
+    "name": "hve-core-codex",
+    "version": "3.3.101-codex.4"
+  },
+  "upstream": {
+    "repository": "https://github.com/microsoft/hve-core",
+    "commit": "af1f9ca335e623d7a5fd8f474a7f9b3beb179764",
+    "version": "3.3.101",
+    "bundle": "plugins/hve-core-all"
+  },
+  "sourceRoot": "plugins/hve-core-codex/agents",
+  "outputRoot": "plugins/hve-core-codex/generated/codex-agents",
+  "generatedAgentCount": 54,
+  "frontmatterKeys": [
+    "agents",
+    "argument-hint",
+    "description",
+    "disable-model-invocation",
+    "handoffs",
+    "name",
+    "tools",
+    "user-invocable"
+  ],
+  "allowedFrontmatterKeys": [
+    "agents",
+    "argument-hint",
+    "description",
+    "disable-model-invocation",
+    "handoffs",
+    "name",
+    "tools",
+    "user-invocable"
+  ],
+  "builtInAgentNames": [
+    "default",
+    "explorer",
+    "worker"
+  ],
+  "profiles": {
+    "all": [
+      "hve_ado_ado_backlog_manager",
+      "hve_ado_ado_prd_to_wit",
+      "hve_coding_standards_code_review_full",
+      "hve_coding_standards_code_review_functional",
+      "hve_coding_standards_code_review_standards",
+      "hve_data_science_eval_dataset_creator",
+      "hve_data_science_gen_data_spec",
+      "hve_data_science_gen_jupyter_notebook",
+      "hve_data_science_gen_streamlit_dashboard",
+      "hve_data_science_test_streamlit_dashboard",
+      "hve_design_thinking_dt_coach",
+      "hve_design_thinking_dt_learning_tutor",
+      "hve_experimental_experiment_designer",
+      "hve_experimental_pptx",
+      "hve_experimental_subagents_pptx_subagent",
+      "hve_github_github_backlog_manager",
+      "hve_hve_core_doc_ops",
+      "hve_hve_core_memory",
+      "hve_hve_core_pr_review",
+      "hve_hve_core_prompt_builder",
+      "hve_hve_core_rpi_agent",
+      "hve_hve_core_subagents_implementation_validator",
+      "hve_hve_core_subagents_phase_implementor",
+      "hve_hve_core_subagents_plan_validator",
+      "hve_hve_core_subagents_prompt_evaluator",
+      "hve_hve_core_subagents_prompt_tester",
+      "hve_hve_core_subagents_prompt_updater",
+      "hve_hve_core_subagents_researcher_subagent",
+      "hve_hve_core_subagents_rpi_validator",
+      "hve_hve_core_task_challenger",
+      "hve_hve_core_task_implementor",
+      "hve_hve_core_task_planner",
+      "hve_hve_core_task_researcher",
+      "hve_hve_core_task_reviewer",
+      "hve_jira_jira_backlog_manager",
+      "hve_jira_jira_prd_to_wit",
+      "hve_project_planning_adr_creation",
+      "hve_project_planning_agile_coach",
+      "hve_project_planning_arch_diagram_builder",
+      "hve_project_planning_brd_builder",
+      "hve_project_planning_meeting_analyst",
+      "hve_project_planning_network_isa95_planner",
+      "hve_project_planning_prd_builder",
+      "hve_project_planning_product_manager_advisor",
+      "hve_project_planning_system_architecture_reviewer",
+      "hve_project_planning_ux_ui_designer",
+      "hve_rai_planning_rai_planner",
+      "hve_security_security_planner",
+      "hve_security_security_reviewer",
+      "hve_security_sssc_planner",
+      "hve_security_subagents_codebase_profiler",
+      "hve_security_subagents_finding_deep_verifier",
+      "hve_security_subagents_report_generator",
+      "hve_security_subagents_skill_assessor"
+    ],
+    "core": [
+      "hve_hve_core_doc_ops",
+      "hve_hve_core_memory",
+      "hve_hve_core_pr_review",
+      "hve_hve_core_prompt_builder",
+      "hve_hve_core_rpi_agent",
+      "hve_hve_core_subagents_implementation_validator",
+      "hve_hve_core_subagents_phase_implementor",
+      "hve_hve_core_subagents_plan_validator",
+      "hve_hve_core_subagents_prompt_evaluator",
+      "hve_hve_core_subagents_prompt_tester",
+      "hve_hve_core_subagents_prompt_updater",
+      "hve_hve_core_subagents_researcher_subagent",
+      "hve_hve_core_subagents_rpi_validator",
+      "hve_hve_core_task_challenger",
+      "hve_hve_core_task_implementor",
+      "hve_hve_core_task_planner",
+      "hve_hve_core_task_researcher",
+      "hve_hve_core_task_reviewer"
+    ],
+    "review": [
+      "hve_coding_standards_code_review_full",
+      "hve_coding_standards_code_review_functional",
+      "hve_coding_standards_code_review_standards",
+      "hve_hve_core_pr_review",
+      "hve_hve_core_subagents_implementation_validator",
+      "hve_hve_core_subagents_plan_validator",
+      "hve_hve_core_subagents_rpi_validator",
+      "hve_hve_core_task_reviewer",
+      "hve_project_planning_system_architecture_reviewer",
+      "hve_security_security_reviewer"
+    ],
+    "security": [
+      "hve_rai_planning_rai_planner",
+      "hve_security_security_planner",
+      "hve_security_security_reviewer",
+      "hve_security_sssc_planner",
+      "hve_security_subagents_codebase_profiler",
+      "hve_security_subagents_finding_deep_verifier",
+      "hve_security_subagents_report_generator",
+      "hve_security_subagents_skill_assessor"
+    ],
+    "automation": [
+      "hve_ado_ado_backlog_manager",
+      "hve_ado_ado_prd_to_wit",
+      "hve_github_github_backlog_manager",
+      "hve_jira_jira_backlog_manager",
+      "hve_jira_jira_prd_to_wit"
+    ]
+  },
+  "agents": [
+    {
+      "name": "hve_ado_ado_backlog_manager",
+      "displayName": "ADO Backlog Manager",
+      "description": "HVE Core ADO Backlog Manager: Orchestrator agent for Azure DevOps backlog management workflows including triage, discovery, sprint planning, PRD-to-work-item conversion, and execution",
+      "sourcePath": "plugins/hve-core-codex/agents/ado/ado-backlog-manager.md",
+      "sourceAgentPath": "ado/ado-backlog-manager.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_ado_ado_backlog_manager.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_ado_ado_prd_to_wit",
+      "displayName": "AzDO PRD to WIT",
+      "description": "HVE Core AzDO PRD to WIT: Product Manager expert for analyzing PRDs and planning Azure DevOps work item hierarchies",
+      "sourcePath": "plugins/hve-core-codex/agents/ado/ado-prd-to-wit.md",
+      "sourceAgentPath": "ado/ado-prd-to-wit.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_ado_ado_prd_to_wit.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools"
+      ],
+      "advisoryKeys": [
+        "tools"
+      ]
+    },
+    {
+      "name": "hve_coding_standards_code_review_full",
+      "displayName": "Code Review Full",
+      "description": "HVE Core Code Review Full: Orchestrator that runs functional and standards code reviews via subagents and produces a merged report",
+      "sourcePath": "plugins/hve-core-codex/agents/coding-standards/code-review-full.md",
+      "sourceAgentPath": "coding-standards/code-review-full.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_coding_standards_code_review_full.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents"
+      ]
+    },
+    {
+      "name": "hve_coding_standards_code_review_functional",
+      "displayName": "Code Review Functional",
+      "description": "HVE Core Code Review Functional: Pre-PR branch diff reviewer for functional correctness, error handling, edge cases, and testing gaps",
+      "sourcePath": "plugins/hve-core-codex/agents/coding-standards/code-review-functional.md",
+      "sourceAgentPath": "coding-standards/code-review-functional.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_coding_standards_code_review_functional.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_coding_standards_code_review_standards",
+      "displayName": "Code Review Standards",
+      "description": "HVE Core Code Review Standards: Skills-based code reviewer for local changes and PRs - applies project-defined coding standards via dynamic skill loading",
+      "sourcePath": "plugins/hve-core-codex/agents/coding-standards/code-review-standards.md",
+      "sourceAgentPath": "coding-standards/code-review-standards.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_coding_standards_code_review_standards.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_data_science_eval_dataset_creator",
+      "displayName": "Evaluation Dataset Creator",
+      "description": "HVE Core Evaluation Dataset Creator: Creates evaluation datasets and documentation for AI agent testing using interview-driven data curation",
+      "sourcePath": "plugins/hve-core-codex/agents/data-science/eval-dataset-creator.md",
+      "sourceAgentPath": "data-science/eval-dataset-creator.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_data_science_eval_dataset_creator.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "argument-hint",
+        "tools"
+      ],
+      "advisoryKeys": [
+        "argument-hint",
+        "tools"
+      ]
+    },
+    {
+      "name": "hve_data_science_gen_data_spec",
+      "displayName": "DS Gen Data Spec",
+      "description": "HVE Core DS Gen Data Spec: Generate comprehensive data dictionaries, machine-readable data profiles, and objective summaries for downstream analysis (EDA notebooks, dashboards) through guided discovery",
+      "sourcePath": "plugins/hve-core-codex/agents/data-science/gen-data-spec.md",
+      "sourceAgentPath": "data-science/gen-data-spec.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_data_science_gen_data_spec.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_data_science_gen_jupyter_notebook",
+      "displayName": "DS Gen Jupyter Notebook",
+      "description": "HVE Core DS Gen Jupyter Notebook: Create structured exploratory data analysis Jupyter notebooks from available data sources and generated data dictionaries",
+      "sourcePath": "plugins/hve-core-codex/agents/data-science/gen-jupyter-notebook.md",
+      "sourceAgentPath": "data-science/gen-jupyter-notebook.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_data_science_gen_jupyter_notebook.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_data_science_gen_streamlit_dashboard",
+      "displayName": "DS Gen Streamlit Dashboard",
+      "description": "HVE Core DS Gen Streamlit Dashboard: Develop a multi-page Streamlit dashboard",
+      "sourcePath": "plugins/hve-core-codex/agents/data-science/gen-streamlit-dashboard.md",
+      "sourceAgentPath": "data-science/gen-streamlit-dashboard.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_data_science_gen_streamlit_dashboard.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_data_science_test_streamlit_dashboard",
+      "displayName": "DS Test Streamlit Dashboard",
+      "description": "HVE Core DS Test Streamlit Dashboard: Automated testing for Streamlit dashboards using Playwright with issue tracking and reporting",
+      "sourcePath": "plugins/hve-core-codex/agents/data-science/test-streamlit-dashboard.md",
+      "sourceAgentPath": "data-science/test-streamlit-dashboard.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_data_science_test_streamlit_dashboard.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_design_thinking_dt_coach",
+      "displayName": "DT Coach",
+      "description": "HVE Core DT Coach: Design Thinking coach guiding teams through the 9-method HVE framework with Think/Speak/Empower philosophy",
+      "sourcePath": "plugins/hve-core-codex/agents/design-thinking/dt-coach.md",
+      "sourceAgentPath": "design-thinking/dt-coach.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_design_thinking_dt_coach.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_design_thinking_dt_learning_tutor",
+      "displayName": "DT Learning Tutor",
+      "description": "HVE Core DT Learning Tutor: Design Thinking learning tutor providing structured curriculum, comprehension checks, and adaptive pacing",
+      "sourcePath": "plugins/hve-core-codex/agents/design-thinking/dt-learning-tutor.md",
+      "sourceAgentPath": "design-thinking/dt-learning-tutor.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_design_thinking_dt_learning_tutor.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_experimental_experiment_designer",
+      "displayName": "Experiment Designer",
+      "description": "HVE Core Experiment Designer: Conversational coach that guides users through designing a Minimum Viable Experiment (MVE) with structured hypothesis formation, vetting, and experiment planning",
+      "sourcePath": "plugins/hve-core-codex/agents/experimental/experiment-designer.md",
+      "sourceAgentPath": "experimental/experiment-designer.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_experimental_experiment_designer.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_experimental_pptx",
+      "displayName": "PowerPoint Builder",
+      "description": "HVE Core PowerPoint Builder: Creates, updates, and manages PowerPoint slide decks using YAML-driven content with python-pptx",
+      "sourcePath": "plugins/hve-core-codex/agents/experimental/pptx.md",
+      "sourceAgentPath": "experimental/pptx.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_experimental_pptx.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_experimental_subagents_pptx_subagent",
+      "displayName": "PowerPoint Subagent",
+      "description": "HVE Core PowerPoint Subagent: Executes PowerPoint skill operations including content extraction, YAML creation, deck building, and visual validation",
+      "sourcePath": "plugins/hve-core-codex/agents/experimental/subagents/pptx-subagent.md",
+      "sourceAgentPath": "experimental/subagents/pptx-subagent.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_experimental_subagents_pptx_subagent.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_github_github_backlog_manager",
+      "displayName": "GitHub Backlog Manager",
+      "description": "HVE Core GitHub Backlog Manager: Orchestrator agent for GitHub backlog management workflows including triage, discovery, sprint planning, and execution",
+      "sourcePath": "plugins/hve-core-codex/agents/github/github-backlog-manager.md",
+      "sourceAgentPath": "github/github-backlog-manager.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_github_github_backlog_manager.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_doc_ops",
+      "displayName": "Doc Ops",
+      "description": "HVE Core Doc Ops: Autonomous documentation operations agent for pattern compliance, accuracy verification, and gap detection",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/doc-ops.md",
+      "sourceAgentPath": "hve-core/doc-ops.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_doc_ops.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents"
+      ]
+    },
+    {
+      "name": "hve_hve_core_memory",
+      "displayName": "Memory",
+      "description": "HVE Core Memory: Conversation memory persistence for session continuity",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/memory.md",
+      "sourceAgentPath": "hve-core/memory.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_memory.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_pr_review",
+      "displayName": "PR Review",
+      "description": "HVE Core PR Review: Comprehensive Pull Request review assistant ensuring code quality, security, and convention compliance",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/pr-review.md",
+      "sourceAgentPath": "hve-core/pr-review.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_pr_review.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_hve_core_prompt_builder",
+      "displayName": "Prompt Builder",
+      "description": "HVE Core Prompt Builder: Prompt engineering assistant with phase-based workflow for creating and validating prompts, agents, and instructions files",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/prompt-builder.md",
+      "sourceAgentPath": "hve-core/prompt-builder.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_prompt_builder.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_rpi_agent",
+      "displayName": "RPI Agent",
+      "description": "HVE Core RPI Agent: Autonomous RPI orchestrator running Research → Plan → Implement → Review → Discover phases, using specialized subagents when task difficulty warrants them",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/rpi-agent.md",
+      "sourceAgentPath": "hve-core/rpi-agent.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_rpi_agent.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "argument-hint",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "argument-hint",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_implementation_validator",
+      "displayName": "Implementation Validator",
+      "description": "HVE Core Implementation Validator: Validates implementation quality against architectural requirements, design principles, and code standards with severity-graded findings",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/implementation-validator.md",
+      "sourceAgentPath": "hve-core/subagents/implementation-validator.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_implementation_validator.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable",
+        "tools"
+      ],
+      "advisoryKeys": [
+        "user-invocable",
+        "tools"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_phase_implementor",
+      "displayName": "Phase Implementor",
+      "description": "HVE Core Phase Implementor: Executes a single implementation phase from a plan with full codebase access and change tracking",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/phase-implementor.md",
+      "sourceAgentPath": "hve-core/subagents/phase-implementor.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_phase_implementor.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_plan_validator",
+      "displayName": "Plan Validator",
+      "description": "HVE Core Plan Validator: Validates implementation plans against research documents, updating the Planning Log Discrepancy Log section with severity-graded findings",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/plan-validator.md",
+      "sourceAgentPath": "hve-core/subagents/plan-validator.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_plan_validator.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_prompt_evaluator",
+      "displayName": "Prompt Evaluator",
+      "description": "HVE Core Prompt Evaluator: Evaluates prompt execution results against Prompt Quality Criteria with severity-graded findings and categorized remediation guidance",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/prompt-evaluator.md",
+      "sourceAgentPath": "hve-core/subagents/prompt-evaluator.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_prompt_evaluator.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_prompt_tester",
+      "displayName": "Prompt Tester",
+      "description": "HVE Core Prompt Tester: Tests prompt files by following them literally in a sandbox environment when creating or improving prompts, instructions, agents, or skills without improving or interpreting beyond face value",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/prompt-tester.md",
+      "sourceAgentPath": "hve-core/subagents/prompt-tester.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_prompt_tester.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_prompt_updater",
+      "displayName": "Prompt Updater",
+      "description": "HVE Core Prompt Updater: Modifies or creates prompts, instructions or rules, agents, skills following prompt engineering conventions and standards based on prompt evaluation and research",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/prompt-updater.md",
+      "sourceAgentPath": "hve-core/subagents/prompt-updater.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_prompt_updater.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_researcher_subagent",
+      "displayName": "Researcher Subagent",
+      "description": "HVE Core Researcher Subagent: Research subagent using search tools, read tools, fetch web page, github repo, and mcp tools",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/researcher-subagent.md",
+      "sourceAgentPath": "hve-core/subagents/researcher-subagent.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_researcher_subagent.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_subagents_rpi_validator",
+      "displayName": "RPI Validator",
+      "description": "HVE Core RPI Validator: Validates a Changes Log against the Implementation Plan, Planning Log, and Research Documents for a specific plan phase",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/subagents/rpi-validator.md",
+      "sourceAgentPath": "hve-core/subagents/rpi-validator.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_subagents_rpi_validator.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_hve_core_task_challenger",
+      "displayName": "Task Challenger",
+      "description": "HVE Core Task Challenger: Adversarial questioning agent that interrogates implementations with What/Why/How questions: no suggestions, no hints, no leading",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/task-challenger.md",
+      "sourceAgentPath": "hve-core/task-challenger.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_task_challenger.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_task_implementor",
+      "displayName": "Task Implementor",
+      "description": "HVE Core Task Implementor: Executes implementation plans from .copilot-tracking/plans with progressive tracking and change records",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/task-implementor.md",
+      "sourceAgentPath": "hve-core/task-implementor.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_task_implementor.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_task_planner",
+      "displayName": "Task Planner",
+      "description": "HVE Core Task Planner: Implementation planner for creating actionable implementation plans",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/task-planner.md",
+      "sourceAgentPath": "hve-core/task-planner.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_task_planner.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_task_researcher",
+      "displayName": "Task Researcher",
+      "description": "HVE Core Task Researcher: Task research specialist for comprehensive project analysis",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/task-researcher.md",
+      "sourceAgentPath": "hve-core/task-researcher.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_task_researcher.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_hve_core_task_reviewer",
+      "displayName": "Task Reviewer",
+      "description": "HVE Core Task Reviewer: Reviews completed implementation work for accuracy, completeness, and convention compliance",
+      "sourcePath": "plugins/hve-core-codex/agents/hve-core/task-reviewer.md",
+      "sourceAgentPath": "hve-core/task-reviewer.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_hve_core_task_reviewer.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "agents",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_jira_jira_backlog_manager",
+      "displayName": "Jira Backlog Manager",
+      "description": "HVE Core Jira Backlog Manager: Orchestrator agent for Jira backlog management workflows including discovery, triage, execution, and single-issue actions",
+      "sourcePath": "plugins/hve-core-codex/agents/jira/jira-backlog-manager.md",
+      "sourceAgentPath": "jira/jira-backlog-manager.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_jira_jira_backlog_manager.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_jira_jira_prd_to_wit",
+      "displayName": "Jira PRD to WIT",
+      "description": "HVE Core Jira PRD to WIT: Product Manager expert for analyzing PRDs and planning Jira issue hierarchies without mutating Jira",
+      "sourcePath": "plugins/hve-core-codex/agents/jira/jira-prd-to-wit.md",
+      "sourceAgentPath": "jira/jira-prd-to-wit.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_jira_jira_prd_to_wit.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools"
+      ],
+      "advisoryKeys": [
+        "tools"
+      ]
+    },
+    {
+      "name": "hve_project_planning_adr_creation",
+      "displayName": "ADR Creation",
+      "description": "HVE Core ADR Creation: Interactive AI coaching for collaborative architectural decision record creation with guided discovery, research integration, and progressive documentation building - Brought to you by microsoft/edge-ai",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/adr-creation.md",
+      "sourceAgentPath": "project-planning/adr-creation.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_adr_creation.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_project_planning_agile_coach",
+      "displayName": "Agile Coach",
+      "description": "HVE Core Agile Coach: Conversational agent that helps create or refine goal-oriented user stories with clear acceptance criteria for any tracking tool",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/agile-coach.md",
+      "sourceAgentPath": "project-planning/agile-coach.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_agile_coach.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_project_planning_arch_diagram_builder",
+      "displayName": "Arch Diagram Builder",
+      "description": "HVE Core Arch Diagram Builder: Architecture diagram builder agent that builds high quality ASCII-art diagrams",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/arch-diagram-builder.md",
+      "sourceAgentPath": "project-planning/arch-diagram-builder.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_arch_diagram_builder.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_project_planning_brd_builder",
+      "displayName": "BRD Builder",
+      "description": "HVE Core BRD Builder: Business Requirements Document builder with guided Q&A and reference integration",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/brd-builder.md",
+      "sourceAgentPath": "project-planning/brd-builder.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_brd_builder.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_project_planning_meeting_analyst",
+      "displayName": "Meeting Analyst",
+      "description": "HVE Core Meeting Analyst: Meeting transcript analyzer that extracts product requirements for PRD creation via work-iq-mcp",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/meeting-analyst.md",
+      "sourceAgentPath": "project-planning/meeting-analyst.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_meeting_analyst.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_project_planning_network_isa95_planner",
+      "displayName": "Network ISA-95 Planner",
+      "description": "HVE Core Network ISA-95 Planner: ISA-95-aligned network planning assistant for secure edge Kubernetes to Azure connectivity, remediation roadmaps, and beginner-friendly guidance",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/network-isa95-planner.md",
+      "sourceAgentPath": "project-planning/network-isa95-planner.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_network_isa95_planner.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "disable-model-invocation",
+        "tools",
+        "agents"
+      ],
+      "advisoryKeys": [
+        "disable-model-invocation",
+        "tools",
+        "agents"
+      ]
+    },
+    {
+      "name": "hve_project_planning_prd_builder",
+      "displayName": "PRD Builder",
+      "description": "HVE Core PRD Builder: Product Requirements Document builder with guided Q&A and reference integration",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/prd-builder.md",
+      "sourceAgentPath": "project-planning/prd-builder.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_prd_builder.toml",
+      "frontmatterKeys": [
+        "name",
+        "description"
+      ],
+      "advisoryKeys": []
+    },
+    {
+      "name": "hve_project_planning_product_manager_advisor",
+      "displayName": "Product Manager Advisor",
+      "description": "HVE Core Product Manager Advisor: Product management advisor for requirements discovery, validation, and issue creation",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/product-manager-advisor.md",
+      "sourceAgentPath": "project-planning/product-manager-advisor.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_product_manager_advisor.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_project_planning_system_architecture_reviewer",
+      "displayName": "System Architecture Reviewer",
+      "description": "HVE Core System Architecture Reviewer: System architecture reviewer for design trade-offs, ADR creation, and well-architected alignment",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/system-architecture-reviewer.md",
+      "sourceAgentPath": "project-planning/system-architecture-reviewer.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_system_architecture_reviewer.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_project_planning_ux_ui_designer",
+      "displayName": "UX UI Designer",
+      "description": "HVE Core UX UI Designer: UX research specialist for Jobs-to-be-Done analysis, user journey mapping, and accessibility requirements",
+      "sourcePath": "plugins/hve-core-codex/agents/project-planning/ux-ui-designer.md",
+      "sourceAgentPath": "project-planning/ux-ui-designer.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_project_planning_ux_ui_designer.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_rai_planning_rai_planner",
+      "displayName": "RAI Planner",
+      "description": "HVE Core RAI Planner: Responsible AI assessment planning agent with 6-phase conversational workflow. Guides planning against NIST AI RMF 1.0 as the default evaluation framework. Prepares RAI security model, impact assessment, control surface catalog, and dual-format backlog handoff.",
+      "sourcePath": "plugins/hve-core-codex/agents/rai-planning/rai-planner.md",
+      "sourceAgentPath": "rai-planning/rai-planner.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_rai_planning_rai_planner.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "agents",
+        "handoffs",
+        "tools"
+      ],
+      "advisoryKeys": [
+        "agents",
+        "handoffs",
+        "tools"
+      ]
+    },
+    {
+      "name": "hve_security_security_planner",
+      "displayName": "Security Planner",
+      "description": "HVE Core Security Planner: Phase-based security planner that produces security models, standards mappings, and backlog handoff artifacts with AI/ML component detection and RAI Planner integration",
+      "sourcePath": "plugins/hve-core-codex/agents/security/security-planner.md",
+      "sourceAgentPath": "security/security-planner.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_security_planner.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "agents",
+        "tools",
+        "handoffs"
+      ],
+      "advisoryKeys": [
+        "agents",
+        "tools",
+        "handoffs"
+      ]
+    },
+    {
+      "name": "hve_security_security_reviewer",
+      "displayName": "Security Reviewer",
+      "description": "HVE Core Security Reviewer: Security skill assessment orchestrator for codebase profiling and vulnerability reporting",
+      "sourcePath": "plugins/hve-core-codex/agents/security/security-reviewer.md",
+      "sourceAgentPath": "security/security-reviewer.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_security_reviewer.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "agents",
+        "tools",
+        "user-invocable",
+        "disable-model-invocation"
+      ],
+      "advisoryKeys": [
+        "agents",
+        "tools",
+        "user-invocable",
+        "disable-model-invocation"
+      ]
+    },
+    {
+      "name": "hve_security_sssc_planner",
+      "displayName": "SSSC Planner",
+      "description": "HVE Core SSSC Planner: >-",
+      "sourcePath": "plugins/hve-core-codex/agents/security/sssc-planner.md",
+      "sourceAgentPath": "security/sssc-planner.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_sssc_planner.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "agents",
+        "handoffs",
+        "tools"
+      ],
+      "advisoryKeys": [
+        "agents",
+        "handoffs",
+        "tools"
+      ]
+    },
+    {
+      "name": "hve_security_subagents_codebase_profiler",
+      "displayName": "Codebase Profiler",
+      "description": "HVE Core Codebase Profiler: Scans the repository to build a technology profile and identify which security skills apply to the codebase",
+      "sourcePath": "plugins/hve-core-codex/agents/security/subagents/codebase-profiler.md",
+      "sourceAgentPath": "security/subagents/codebase-profiler.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_subagents_codebase_profiler.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_security_subagents_finding_deep_verifier",
+      "displayName": "Finding Deep Verifier",
+      "description": "HVE Core Finding Deep Verifier: Deep adversarial verification of FAIL and PARTIAL findings for a single security skill",
+      "sourcePath": "plugins/hve-core-codex/agents/security/subagents/finding-deep-verifier.md",
+      "sourceAgentPath": "security/subagents/finding-deep-verifier.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_subagents_finding_deep_verifier.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_security_subagents_report_generator",
+      "displayName": "Report Generator",
+      "description": "HVE Core Report Generator: Collates verified security skill assessment findings and generates a comprehensive vulnerability report written to .copilot-tracking/security/",
+      "sourcePath": "plugins/hve-core-codex/agents/security/subagents/report-generator.md",
+      "sourceAgentPath": "security/subagents/report-generator.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_subagents_report_generator.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "user-invocable"
+      ]
+    },
+    {
+      "name": "hve_security_subagents_skill_assessor",
+      "displayName": "Skill Assessor",
+      "description": "HVE Core Skill Assessor: Assesses a single security knowledge skill against the codebase, reading vulnerability references and returning structured findings",
+      "sourcePath": "plugins/hve-core-codex/agents/security/subagents/skill-assessor.md",
+      "sourceAgentPath": "security/subagents/skill-assessor.md",
+      "outputPath": "plugins/hve-core-codex/generated/codex-agents/hve_security_subagents_skill_assessor.toml",
+      "frontmatterKeys": [
+        "name",
+        "description",
+        "tools",
+        "user-invocable"
+      ],
+      "advisoryKeys": [
+        "tools",
+        "user-invocable"
+      ]
+    }
+  ]
+}

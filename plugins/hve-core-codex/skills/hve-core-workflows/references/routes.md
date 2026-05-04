@@ -12,6 +12,6 @@ Load only the files needed for the requested workflow. Paths are relative to the
 | Task challenge | `commands/hve-core/task-challenge.md` | `agents/hve-core/task-challenger.md` |
 | Checkpoint or memory | `commands/hve-core/checkpoint.md` | `agents/hve-core/memory.md` |
 | Prompt build, analyze, or refactor | `commands/hve-core/prompt-build.md`, `commands/hve-core/prompt-analyze.md`, or `commands/hve-core/prompt-refactor.md` | `agents/hve-core/prompt-builder.md` |
-| Pull request description | `commands/hve-core/pull-request.md` | `instructions/hve-core/pull-request.instructions.md` and `skills/pr-reference/SKILL.md` |
+| Pull request description | `commands/hve-core/pull-request.md` | `instructions/hve-core/pull-request.instructions.md` and `skills/shared/pr-reference/SKILL.md` |
 | Git commit, commit message, setup, merge, or rebase | `commands/hve-core/git-commit.md`, `commands/hve-core/git-commit-message.md`, `commands/hve-core/git-setup.md`, or `commands/hve-core/git-merge.md` | `instructions/hve-core/commit-message.instructions.md` or `instructions/hve-core/git-merge.instructions.md` as needed |
 | Documentation operations | `commands/hve-core/doc-ops-update.md` | `agents/hve-core/doc-ops.md` |

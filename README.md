@@ -16,7 +16,8 @@ Generated from upstream:
 | `plugins/hve-core-codex/agents/` | HVE Core agent definitions preserved as the plugin agent surface where Codex supports it, and as prompt assets for wrapper skills. |
 | `plugins/hve-core-codex/commands/` | Prompt-derived Codex slash commands plus local HVE Codex helper commands. |
 | `plugins/hve-core-codex/instructions/` | HVE Core coding, workflow, security, RAI, and domain instruction references. |
-| `plugins/hve-core-codex/skills/` | Upstream Codex skill packages plus Codex wrapper skills that route to command and agent assets. |
+| `plugins/hve-core-codex/skills/` | Upstream Codex skill packages plus Codex wrapper skills that route to command and agent assets, with Codex-incompatible upstream installer docs excluded. |
+| `plugins/hve-core-codex/generated/codex-agents/` | Generated Codex custom-agent TOML artifacts and manifest for explicit out-of-band installation. |
 | `plugins/hve-core-codex/docs/templates/` | Reusable planning, review, ADR, BRD, security, SSSC, and RAI templates. |
 | `plugins/hve-core-codex/scripts/lib/` | Small upstream shared helper scripts bundled with generated plugins. |
 | `github-actions/workflows/` | Optional GitHub Agentic Workflow automation package for consumer repos. |
@@ -31,6 +32,8 @@ Hand-maintained in this port:
 | `scripts/sync-upstream.sh` | Deterministic sync from upstream HVE Core. |
 | `scripts/verify-port.sh` | Port verification checks. |
 | `scripts/audit-runtime-surfaces.js` | Command and agent metadata compatibility audit for the runtime-first plugin surfaces. |
+| `scripts/generate-codex-agents.js` | Generates Codex custom-agent TOML from packaged HVE agent markdown. |
+| `scripts/install-codex-agents.sh` | Explicit out-of-band installer for project or user Codex custom-agent directories. |
 | `overlays/hve-core-codex/` | Codex-specific helper commands and wrapper skills copied after upstream sync. |
 | `PORTING.md` | Porting rules, exclusions, and known limitations. |
 
@@ -61,6 +64,8 @@ The reliable Codex-discoverable entrypoints are wrapper skills:
 * `hve-pr-workflows`
 * `hve-github-automation`
 * `hve-port-maintainer`
+* `hve-copilot-instructions`
+* `hve-codex-agent-porting`
 
 The wrappers prefer runtime command/agent behavior when available, then fall
 back to loading the packaged markdown files directly. Upstream agent markdown is
@@ -72,6 +77,7 @@ Preferred Codex prompts should read like normal instructions:
 ```text
 Use HVE RPI to validate and plan remediation for an access-control issue. Do not modify files yet.
 Use HVE security review to review group ownership checks around transcription jobs.
+Use HVE Copilot instructions to inspect this repo and draft .github/copilot-instructions.md plus .github/instructions/*.instructions.md. Ask before writing.
 ```
 
 The command-style shorthand is accepted for compatibility, but it is not the
@@ -95,6 +101,42 @@ fallback before cache refresh, invoke wrappers by file path, for example:
 Use plugins/hve-core-codex/skills/hve-core-workflows/SKILL.md for this task.
 ```
 
+## Custom Codex Agents
+
+This port generates Codex custom-agent TOML from packaged HVE Core agent
+markdown under `plugins/hve-core-codex/generated/codex-agents/`. Those files are
+packaged artifacts only. Installing the plugin does not activate them as Codex
+custom agents.
+
+To preview a project-scoped install:
+
+```bash
+scripts/install-codex-agents.sh --dry-run --scope project --target /path/to/repo
+```
+
+To install the default `core` profile into a project:
+
+```bash
+scripts/install-codex-agents.sh --scope project --target /path/to/repo
+```
+
+To install every generated agent:
+
+```bash
+scripts/install-codex-agents.sh --scope project --target /path/to/repo --profile all
+```
+
+Use `--scope user` only when you explicitly want user-global agents in
+`~/.codex/agents/`. The installer writes an `hve-core-codex-install.json`
+manifest, skips unrelated TOML files, and supports `--dry-run`, `--force`,
+`--prune`, and `--uninstall`.
+
+After installation, ask Codex for the generated agent by name, for example:
+
+```text
+Use hve_hve_core_task_researcher to research this repo and create the HVE research artifact.
+```
+
 ## Sync From Upstream
 
 Run this from the repo root when the adjacent upstream HVE Core checkout changes:
@@ -105,12 +147,13 @@ Run this from the repo root when the adjacent upstream HVE Core checkout changes
 ```
 
 The sync writes `upstream.lock.json` with the upstream commit, version, generated
-counts, and known exclusions. Treat generated directories as vendored output:
-refresh them with the sync script instead of editing them by hand.
+counts, generated Codex custom-agent counts, and known exclusions. Treat
+generated directories as vendored output: refresh them with the sync script
+instead of editing them by hand.
 
-When upstream adds commands or agents, use the `hve-port-maintainer` skill to
-reconcile runtime metadata and decide whether a wrapper route map needs a new
-entry.
+When upstream adds commands or agents, use the `hve-port-maintainer` and
+`hve-codex-agent-porting` skills to reconcile runtime metadata, generated
+custom-agent TOML, install profiles, and wrapper route maps.
 
 The plugin manifest version may use an upstream-based downstream suffix such as
 `3.3.101-codex.1`. The upstream version remains recorded separately in

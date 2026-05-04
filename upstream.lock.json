@@ -6,7 +6,7 @@
     "version": "3.3.101",
     "bundle": "plugins/hve-core-all"
   },
-  "syncedAt": "2026-05-01T16:03:02Z",
+  "syncedAt": "2026-05-04T15:38:29Z",
   "artifactCounts": {
     "upstream": {
       "agents": 54,
@@ -18,12 +18,13 @@
       "agents": 54,
       "commands": 71,
       "instructions": 104,
-      "skills": 22,
+      "skills": 23,
+      "generatedCodexAgentFiles": 54,
       "docsTemplateFiles": 12,
       "automationWorkflowFiles": 10,
       "automationAgentFiles": 58,
       "automationInstructionFiles": 107,
-      "automationSkillFiles": 17
+      "automationSkillFiles": 16
     }
   },
   "generatedDirectories": [
@@ -31,6 +32,7 @@
     "plugins/hve-core-codex/commands",
     "plugins/hve-core-codex/instructions",
     "plugins/hve-core-codex/skills",
+    "plugins/hve-core-codex/generated/codex-agents",
     "plugins/hve-core-codex/docs/templates",
     "plugins/hve-core-codex/scripts/lib",
     "github-actions/workflows",
@@ -43,6 +45,10 @@
     {
       "name": "owasp-docker",
       "reason": "Upstream marks this skill as removed due distribution-incompatible source licensing."
+    },
+    {
+      "name": "hve-core-installer",
+      "reason": "Upstream installer docs target VS Code and GitHub Copilot repository setup flows that are misleading in the Codex plugin port."
     },
     {
       "name": "co-located tests and caches",

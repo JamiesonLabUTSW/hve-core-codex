@@ -11,9 +11,10 @@ Use this skill to maintain the downstream Codex plugin port.
 
 1. Read [references/reconciliation.md](references/reconciliation.md).
 2. Run the upstream sync when requested by the user.
-3. Run port verification, including the command and agent surface audit.
+3. Run port verification, including the command, agent, and generated Codex custom-agent audits.
 4. Inspect new or removed upstream command and agent files.
 5. Update wrapper route references only for user-facing workflows that should be discoverable through skills.
+6. Confirm generated Codex custom-agent TOML and install profiles remain aligned with upstream agents.
 
 ## Rules
 
@@ -21,3 +22,4 @@ Use this skill to maintain the downstream Codex plugin port.
 - Put Codex-specific skills, helper commands, and route references under `overlays/hve-core-codex/`.
 - Treat upstream command files as the target slash-command surface.
 - Treat upstream agent files as packaged agent definitions. Do not claim they are Codex `spawn_agent` roles unless the runtime exposes them.
+- Treat generated custom-agent TOML as out-of-band install artifacts until explicitly copied into `.codex/agents/` or `~/.codex/agents/`.

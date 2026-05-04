@@ -1,6 +1,6 @@
 {
   "name": "hve-core-codex",
-  "version": "3.3.101-codex.2",
+  "version": "3.3.101-codex.4",
   "description": "HVE Core All agents, commands, instructions, skills, wrapper routers, and workflow guidance packaged for Codex CLI.",
   "author": {
     "name": "Microsoft",
@@ -18,6 +18,8 @@
     "rpi",
     "github-copilot",
     "github-actions",
+    "copilot-instructions",
+    "instructions",
     "security",
     "jira",
     "gitlab"
@@ -38,6 +40,7 @@
     "defaultPrompt": [
       "Run the HVE RPI workflow for this task.",
       "Review this repo with HVE security guidance.",
+      "Generate GitHub Copilot instructions for this repository.",
       "Explain the HVE GitHub automation package."
     ],
     "brandColor": "#0078D4"
