@@ -1,0 +1,193 @@
+name: Sync Upstream HVE Core
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 10 * * 1"
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-upstream-hve-core
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: Sync latest weekly upstream release
+    runs-on: ubuntu-latest
+
+    env:
+      LOOKBACK_DAYS: 7
+      PORT_DIR: hve-core-codex
+      UPSTREAM_DIR: hve-core
+      UPSTREAM_REPO: microsoft/hve-core
+
+    steps:
+      - name: Checkout port
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: ${{ env.PORT_DIR }}
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Find latest upstream release from last week
+        id: upstream
+        working-directory: ${{ env.PORT_DIR }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          gh api --method GET "repos/${UPSTREAM_REPO}/releases" -f per_page=100 > /tmp/hve-core-releases.json
+
+          node <<'NODE'
+          const fs = require("fs");
+
+          const releases = JSON.parse(fs.readFileSync("/tmp/hve-core-releases.json", "utf8"));
+          const lock = JSON.parse(fs.readFileSync("upstream.lock.json", "utf8"));
+          const currentVersion = lock.source.version;
+          const currentParts = currentVersion.split(".").map(Number);
+          const lookbackDays = Number(process.env.LOOKBACK_DAYS || 7);
+          const cutoff = Date.now() - lookbackDays * 24 * 60 * 60 * 1000;
+
+          function parseTag(tag) {
+            const match = /^hve-core-v(\d+)\.(\d+)\.(\d+)$/.exec(tag || "");
+            if (!match) return null;
+            const parts = match.slice(1).map(Number);
+            return { version: parts.join("."), parts };
+          }
+
+          function compareParts(left, right) {
+            for (let index = 0; index < 3; index += 1) {
+              const diff = (left[index] || 0) - (right[index] || 0);
+              if (diff !== 0) return diff;
+            }
+
+            return 0;
+          }
+
+          const candidates = releases
+            .filter((release) => !release.draft)
+            .filter((release) => new Date(release.published_at).getTime() >= cutoff)
+            .map((release) => ({ release, parsed: parseTag(release.tag_name) }))
+            .filter((candidate) => candidate.parsed);
+
+          if (candidates.length === 0) {
+            console.log(`No hve-core release found in the last ${lookbackDays} days.`);
+            fs.appendFileSync(process.env.GITHUB_OUTPUT, "should_sync=false\n");
+            process.exit(0);
+          }
+
+          candidates.sort((left, right) => {
+            const versionDiff = compareParts(right.parsed.parts, left.parsed.parts);
+            return versionDiff || new Date(right.release.published_at) - new Date(left.release.published_at);
+          });
+
+          const latest = candidates[0];
+          const shouldSync = compareParts(latest.parsed.parts, currentParts) > 0;
+
+          console.log(`current=${currentVersion}`);
+          console.log(`latest_recent=${latest.parsed.version}`);
+          console.log(`latest_published_at=${latest.release.published_at}`);
+          console.log(`should_sync=${shouldSync}`);
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, [
+            `current_version=${currentVersion}`,
+            `latest_version=${latest.parsed.version}`,
+            `latest_tag=${latest.release.tag_name}`,
+            `latest_url=${latest.release.html_url}`,
+            `latest_published_at=${latest.release.published_at}`,
+            `should_sync=${shouldSync}`,
+          ].join("\n") + "\n");
+          NODE
+
+      - name: Checkout upstream release
+        if: steps.upstream.outputs.should_sync == 'true'
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ env.UPSTREAM_REPO }}
+          ref: ${{ steps.upstream.outputs.latest_tag }}
+          path: ${{ env.UPSTREAM_DIR }}
+          fetch-depth: 1
+
+      - name: Run porting scripts
+        if: steps.upstream.outputs.should_sync == 'true'
+        working-directory: ${{ env.PORT_DIR }}
+        run: |
+          set -euo pipefail
+
+          ./scripts/sync-upstream.sh ../${UPSTREAM_DIR}
+
+          node <<'NODE'
+          const fs = require("fs");
+
+          const manifestPath = "plugins/hve-core-codex/.codex-plugin/plugin.json";
+          const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+          const lock = JSON.parse(fs.readFileSync("upstream.lock.json", "utf8"));
+          const upstreamVersion = lock.source.version;
+
+          if (manifest.version !== upstreamVersion && !manifest.version.startsWith(`${upstreamVersion}-codex.`)) {
+            manifest.version = `${upstreamVersion}-codex.1`;
+            fs.writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+          }
+          NODE
+
+          ./scripts/verify-port.sh
+
+      - name: Check for changes
+        id: changes
+        if: steps.upstream.outputs.should_sync == 'true'
+        working-directory: ${{ env.PORT_DIR }}
+        run: |
+          if [[ -z "$(git status --porcelain)" ]]; then
+            echo "has_changes=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "has_changes=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create or update pull request
+        if: steps.changes.outputs.has_changes == 'true'
+        working-directory: ${{ env.PORT_DIR }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM_TAG: ${{ steps.upstream.outputs.latest_tag }}
+          UPSTREAM_URL: ${{ steps.upstream.outputs.latest_url }}
+          UPSTREAM_VERSION: ${{ steps.upstream.outputs.latest_version }}
+        run: |
+          set -euo pipefail
+
+          branch="automation/sync-hve-core-${UPSTREAM_VERSION}"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "${branch}"
+          git add -A
+          git commit -m "chore: sync hve-core ${UPSTREAM_VERSION}"
+          git push --force-with-lease origin "${branch}"
+
+          cat > /tmp/sync-upstream-pr-body.md <<EOF
+          Syncs this Codex port from upstream release [${UPSTREAM_TAG}](${UPSTREAM_URL}).
+
+          Validation run:
+          - \`./scripts/sync-upstream.sh ../hve-core\`
+          - \`./scripts/verify-port.sh\`
+          EOF
+
+          if gh pr view "${branch}" --repo "${GITHUB_REPOSITORY}" --json number > /dev/null 2>&1; then
+            gh pr edit "${branch}" --repo "${GITHUB_REPOSITORY}" \
+              --title "chore: sync hve-core ${UPSTREAM_VERSION}" \
+              --body-file /tmp/sync-upstream-pr-body.md
+          else
+            gh pr create --repo "${GITHUB_REPOSITORY}" \
+              --base main \
+              --head "${branch}" \
+              --title "chore: sync hve-core ${UPSTREAM_VERSION}" \
+              --body-file /tmp/sync-upstream-pr-body.md
+          fi
